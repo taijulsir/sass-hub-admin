@@ -138,7 +138,7 @@ export function AppSidebar() {
   const roleLabel = platformRoles?.[0] ?? user?.globalRole ?? "Admin";
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-muted bg-card">
+    <Sidebar collapsible="icon" className="border-r border-muted bg-card overflow-x-hidden">
       {/* ── Logo ──────────────────────────────────────────────────────────── */}
       <SidebarHeader className="h-16 flex px-4 border-b border-muted">
         <Link href="/" className="flex items-center group">
@@ -164,7 +164,7 @@ export function AppSidebar() {
       </SidebarHeader>
 
       {/* ── Navigation ────────────────────────────────────────────────────── */}
-      <SidebarContent className="px-2 py-2 gap-0">
+  <SidebarContent className="px-2 py-2 gap-0 overflow-x-hidden">
         {visibleGroups.map((group, groupIdx) => (
           <React.Fragment key={group.label}>
             {groupIdx > 0 && <SidebarSeparator className="my-1 mx-2 opacity-40" />}
