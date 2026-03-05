@@ -378,4 +378,25 @@ export const AdminService = {
     const { data } = await api.delete(`/support/admin/support-tickets/${id}`);
     return data;
   },
+
+  // --- Contact Submissions & Feedback ---
+  getContactSubmissions: async (params: any) => {
+    const { data } = await api.get('/crm/admin/contact-submissions', { params });
+    return data;
+  },
+  getContactSubmissionDetails: async (id: string) => {
+    const { data } = await api.get(`/crm/admin/contact-submissions/${id}`);
+    return data;
+  },
+  updateContactSubmissionStatus: async (id: string, status: string) => {
+    const { data } = await api.patch(`/crm/admin/contact-submissions/${id}/status`, { status });
+    return data;
+  },
+  deleteContactSubmission: async (id: string) => {
+    await api.delete(`/crm/admin/contact-submissions/${id}`);
+  },
+  convertFeedbackToTicket: async (id: string, payload: { priority: string, assignedAdmin: string, organizationId?: string }) => {
+    const { data } = await api.post(`/crm/admin/contact-submissions/${id}/convert-to-ticket`, payload);
+    return data;
+  },
 }
