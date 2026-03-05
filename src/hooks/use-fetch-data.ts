@@ -34,12 +34,20 @@ export function useFetchData<T>(
       const response = await fetchFn(params);
       
       // Standardize response access based on typical project structure
-      const results = response.data || [];
-      const pagination = response.pagination || { total: 0, totalPages: 1 };
+  // Response shapes vary between endpoints. Normalize common shapes:
+  // - { data: [...] , pagination: { total, totalPages } }
+  // - { data: [...], meta: { total, page, totalPages } }
+  // - direct array in response.data
+  const results = (response && (response.data ?? response)) || [];
 
-      setData(results);
-      setTotalItems(pagination.total);
-      setTotalPages(pagination.totalPages);
+  // pagination can live under pagination or meta
+  const pagination = response?.pagination || response?.meta || { total: 0, totalPages: 1 };
+
+  // If backend returns { success: true, data: [...], meta: { total } }
+  // and we received that object as `response`, then results will be response.data
+  setData(Array.isArray(results) ? results : []);
+  setTotalItems(pagination.total ?? 0);
+  setTotalPages(pagination.totalPages ?? 1);
     } catch (error: any) {
       console.error('Fetch error:', error);
       toast.error(error.response?.data?.message || 'Failed to fetch data');

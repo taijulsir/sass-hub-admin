@@ -88,6 +88,28 @@ export const AdminService = {
     return data;
   },
 
+  // --- Coupons ---
+  getCoupons: async (params: any) => {
+    const { data } = await api.get('/coupons', { params });
+    return data;
+  },
+  getCouponSummary: async () => {
+    const { data } = await api.get('/coupons/summary');
+    return data;
+  },
+  createCoupon: async (couponData: any) => {
+    const { data } = await api.post('/coupons', couponData);
+    return data;
+  },
+  updateCoupon: async (id: string, couponData: any) => {
+    const { data } = await api.put(`/coupons/${id}`, couponData);
+    return data;
+  },
+  deleteCoupon: async (id: string) => {
+    const { data } = await api.delete(`/coupons/${id}`);
+    return data;
+  },
+
   // ── Subscriptions (direct, by subscription ID) ────────────────────────────
   getSubscriptionKpis: async () => {
     const { data } = await api.get('/admin/subscriptions/kpis');

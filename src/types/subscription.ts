@@ -74,3 +74,33 @@ export interface SubscriptionHistoryItem {
   metadata?: Record<string, any>;
   createdAt: string;
 }
+
+export type DiscountType = 'percentage' | 'fixed_amount';
+
+export interface ICoupon {
+  _id: string;
+  code: string;
+  name: string;
+  description?: string;
+  discountType: DiscountType;
+  discountAmount: number;
+  minSpend?: number;
+  maxDiscount?: number;
+  startDate?: string;
+  expiryDate?: string;
+  usageLimit?: number;
+  usageCount: number;
+  perUserLimit?: number;
+  isActive: boolean;
+  applicablePlans?: string[];
+  createdBy?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CouponAnalytics {
+  totalCoupons: number;
+  activeCoupons: number;
+  totalRedemptions: number;
+  totalDiscountGiven: number;
+}
