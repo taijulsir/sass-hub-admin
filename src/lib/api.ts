@@ -53,8 +53,8 @@ api.interceptors.response.use(
       } catch (refreshError) {
         // Refresh failed (token expired/invalid) - logout
         useAuthStore.getState().logout();
-        if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
-          window.location.href = '/login'; // Redirect to login
+        if (typeof window !== 'undefined' && window.location.pathname !== '/auth/login') {
+          window.location.href = '/auth/login'; // Redirect to login
         }
         return Promise.reject(error); // Return original error to preserve the message
       }

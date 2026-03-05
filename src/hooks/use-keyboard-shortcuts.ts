@@ -38,7 +38,7 @@ export function KeyboardShortcutManager() {
       if (event.shiftKey && event.key.toUpperCase() === "Q") {
         event.preventDefault();
         logout();
-        router.push("/login");
+        router.push("/auth/login");
         toast.success("Logged out successfully");
         return;
       }

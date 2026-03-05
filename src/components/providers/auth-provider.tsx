@@ -5,7 +5,18 @@ import { useAuthStore } from '../../lib/store';
 import api from '../../lib/api';
 import { Loader2 } from "lucide-react";
 
-const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password', '/reset-password'];
+// Public auth routes (App Router nests them under /auth)
+const PUBLIC_ROUTES = [
+  '/login',
+  '/register',
+  '/forgot-password',
+  '/reset-password',
+  // App Router uses /auth/*, include those as well
+  '/auth/login',
+  '/auth/register',
+  '/auth/forgot-password',
+  '/auth/reset-password',
+];
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -52,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (isLoading) return;
 
     if (!isAuthenticated && !PUBLIC_ROUTES.includes(pathname)) {
-      router.replace('/login');
+      router.replace('/auth/login');
     } else if (isAuthenticated && PUBLIC_ROUTES.includes(pathname)) {
       router.replace('/');
     }

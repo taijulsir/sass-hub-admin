@@ -36,7 +36,7 @@ export function TopNav() {
 
   const handleLogout = () => {
     logout();
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   return (
