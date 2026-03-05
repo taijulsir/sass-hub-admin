@@ -78,7 +78,7 @@ export const getFeatureFlagColumns = ({
       accessorKey: "enabledOrganizations",
       cell: (row: FeatureFlag) => (
         <span className="text-xs font-semibold text-slate-600 tabular-nums">
-          {row.enabledGlobal ? "All Organizations" : `${row.enabledOrganizations.length} Orgs`}
+          {row.enabledGlobal ? "All Organizations" : `${row.enabledOrganizations?.length || 0} Orgs`}
         </span>
       ),
   },

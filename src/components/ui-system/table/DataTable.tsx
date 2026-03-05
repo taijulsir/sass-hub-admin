@@ -41,6 +41,7 @@ export function DataTable<T>({
   maxHeight,
   stickyHeader = true,
 }: DataTableProps<T>) {
+  console.log("columns are",columns)
   if (loading) {
     return (
       <div className="rounded-2xl border border-muted bg-card overflow-hidden">

@@ -13,12 +13,21 @@ import { PageHeader } from "@/components/ui-system/page-header";
 import { FilterSection } from "@/components/ui-system/filter-section";
 import { getFeatureFlagColumns, FeatureFlag } from "./flag-utils";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { CreateFlagForm } from "./components/create-flag-form";
 
 export default function FeatureFlagsPage() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [activeTab, setActiveTab] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchParams = useMemo(
     () => ({
@@ -80,6 +89,7 @@ export default function FeatureFlagsPage() {
     { label: "Total Orgs", value: "All Active", icon: ShieldCheck, bg: "bg-purple-50", color: "text-purple-600" },
   ];
 
+
   return (
     <div className="h-full flex flex-col space-y-4 overflow-hidden bg-slate-50/30">
         <div className="px-6 pt-6 shrink-0">
@@ -89,7 +99,7 @@ export default function FeatureFlagsPage() {
                 action={{
                     label: "Create Flag",
                     icon: Plus,
-                    onClick: () => toast.info("Create Flag Modal"),
+                    onClick: () => setIsModalOpen(true),
                 }}
             />
 
@@ -152,6 +162,25 @@ export default function FeatureFlagsPage() {
                 </div>
             </Card>
         </div>
+
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogTitle className="sr-only">Create New Flag</DialogTitle>
+                <DialogHeader>
+                    <DialogTitle>Create New Flag</DialogTitle>
+                    <DialogDescription>
+                        Define a new feature flag to control system capabilities globally or per organization.
+                    </DialogDescription>
+                </DialogHeader>
+                <CreateFlagForm 
+                    onSuccess={() => {
+                        setIsModalOpen(false);
+                        refresh();
+                    }}
+                    onCancel={() => setIsModalOpen(false)}
+                />
+            </DialogContent>
+        </Dialog>
     </div>
   );
 }
