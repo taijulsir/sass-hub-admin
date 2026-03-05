@@ -6,13 +6,15 @@ import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const PasswordInput = React.forwardRef<HTMLInputElement, InputSystemProps>(
-  (props, ref) => {
+  ({ control, name, ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     return (
       <div className="relative">
         <ShortTextInput
           ref={ref}
+          control={control}
+          name={name}
           type={showPassword ? "text" : "password"}
           className="pr-10"
           {...props}
@@ -21,7 +23,7 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, InputSystemProps
           type="button"
           variant="ghost"
           size="sm"
-          className="absolute right-0 top-7 h-9 w-10 px-0 hover:bg-transparent"
+          className="absolute right-1 top-[22px] h-9 w-10 px-0 hover:bg-transparent"
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? (
