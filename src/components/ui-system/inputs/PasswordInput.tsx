@@ -16,15 +16,16 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, InputSystemProps
           control={control}
           name={name}
           type={showPassword ? "text" : "password"}
-          className="pr-10"
+          className="pr-12"
           {...props}
         />
         <Button
           type="button"
           variant="ghost"
           size="sm"
-          className="absolute right-1 top-[22px] h-9 w-10 px-0 hover:bg-transparent"
+          className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0 hover:bg-transparent"
           onClick={() => setShowPassword(!showPassword)}
+          onMouseDown={(e) => e.preventDefault()} /* keep input focused when toggling */
         >
           {showPassword ? (
             <EyeOff className="h-4 w-4 text-muted-foreground" />

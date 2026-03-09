@@ -35,7 +35,7 @@ export const ShortTextInput = React.forwardRef<HTMLInputElement, InputSystemProp
     );
 
     return (
-      <div className="grid w-full items-center gap-1.5">
+      <div className="grid w-full items-center gap-1">
         {label && (
           <Label htmlFor={name} className="text-muted-foreground font-medium text-xs uppercase tracking-wider ml-1">
             {label} {required && <span className="text-destructive">*</span>}
