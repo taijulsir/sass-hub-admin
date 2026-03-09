@@ -54,13 +54,13 @@ export default function RegisterPage() {
       error={error}
       success={success}
       footerContent={
-        <div className="text-center pb-1">
-          <p className="text-[10px] text-gray-500 font-medium tracking-tight">
-            By signing up, you agree to our <Link href="#" className="text-[#4F46E5] hover:underline">Terms</Link>.
+        <div className="text-center pt-1 pb-0">
+          <p className="text-[9px] text-gray-500 font-medium tracking-tight">
+            By signing up, you agree to our <Link href="#" className="text-emerald-400 hover:underline">Terms</Link>.
           </p>
-          <p className="text-xs text-gray-500 font-medium tracking-tight mt-1.5">
+          <p className="text-[10px] text-gray-500 font-medium tracking-tight mt-1">
             Have an account?{' '}
-            <Link href="/auth/login" className="text-[#4F46E5] font-bold hover:underline">
+            <Link href="/auth/login" className="text-emerald-400 font-bold hover:underline">
               Sign in
             </Link>
           </p>
@@ -74,6 +74,9 @@ export default function RegisterPage() {
           { label: 'Uppercase', met: /[A-Z]/.test(password) },
           { label: 'Number/Symbol', met: /[0-9!@#$%^&*]/.test(password) },
         ];
+        const metCount = criteria.filter((c) => c.met).length;
+        const strengthLabel = metCount === 3 ? 'Strong' : metCount === 2 ? 'Medium' : 'Weak';
+        const strengthClass = metCount === 3 ? 'bg-emerald-500' : metCount === 2 ? 'bg-amber-400' : 'bg-rose-400';
 
         return (
           <>
@@ -93,7 +96,7 @@ export default function RegisterPage() {
               icon={<Mail className="w-4 h-4" />}
             />
 
-            <div className="space-y-1.5">
+            <div className="space-y-0.5">
               <ShortTextInput
                 control={form.control}
                 name="password"
@@ -103,14 +106,14 @@ export default function RegisterPage() {
                 icon={<Lock className="w-4 h-4" />}
               />
 
-              <div className="flex flex-wrap gap-x-3 gap-y-1 px-1">
+              <div className="flex flex-wrap gap-x-2 gap-y-0.5 px-1">
                 {criteria.map((c, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <div className={cn(
                       "w-3 h-3 rounded-full flex items-center justify-center transition-colors shrink-0",
                       c.met ? "bg-emerald-100 text-emerald-600" : "bg-gray-100 text-gray-400"
                     )}>
-                      {c.met ? <Check className="w-1.5 h-1.5" /> : <div className="w-[3px] h-[3px] rounded-full bg-current" />}
+                      {c.met ? <Check className="w-1.5 h-1.5" /> : <div className="w-0.75 h-0.75 rounded-full bg-current" />}
                     </div>
                     <span className={cn("text-[9px] font-bold uppercase tracking-tight", c.met ? "text-emerald-700" : "text-gray-400")}>
                       {c.label}
@@ -118,12 +121,20 @@ export default function RegisterPage() {
                   </div>
                 ))}
               </div>
+
+              {/* compact strength bar */}
+              <div className="flex items-center gap-2 px-1 mt-1">
+                <div className="flex-1 bg-gray-100 h-1 rounded-full overflow-hidden">
+                  <div className={cn("h-1 rounded-full transition-all", strengthClass)} style={{ width: `${(metCount / 3) * 100}%` }} />
+                </div>
+                <span className="text-[10px] font-medium text-gray-500 uppercase tracking-tight">{strengthLabel}</span>
+              </div>
             </div>
 
             <ShortTextInput
               control={form.control}
               name="confirm"
-              label="Confirm"
+              label="Confirm Password"
               type="password"
               placeholder="••••••••"
               icon={<Lock className="w-4 h-4" />}

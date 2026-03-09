@@ -50,15 +50,15 @@ export default function AuthForm<T extends FieldValues>({
             <FormWrapper schema={schema} onSubmit={onSubmit} defaultValues={defaultValues}>
                 {(form) => (
                     <>
-                        <CardContent className="space-y-4 p-0 mt-1">
+                        <CardContent className="space-y-3.5 p-0 mt-1">
                             <AuthAlerts error={error} success={success} />
                             {children(form)}
                         </CardContent>
 
-                        <CardFooter className="flex flex-col space-y-4 p-0 mt-5 md:mt-6">
+                        <CardFooter className="flex flex-col space-y-3.5 p-0 mt-3 md:mt-3">
                             <Button
                                 type="submit"
-                                className="w-full h-11 rounded-xl bg-[#4F46E5] text-sm font-bold text-white shadow-lg shadow-indigo-600/20 transition-all hover:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                                className="w-full h-10 rounded-xl bg-emerald-500 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 transition-all hover:bg-emerald-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                                 disabled={form.formState.isSubmitting}
                             >
                                 {form.formState.isSubmitting ? (

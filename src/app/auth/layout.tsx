@@ -77,7 +77,7 @@ function RightPanel({ children }: PropsWithChildren) {
       <div className="absolute top-0 right-0 p-6 z-20">
         <Link
           href="#"
-          className="text-[11px] font-bold text-gray-400 hover:text-gray-900 transition-colors flex items-center gap-1.5 uppercase tracking-widest"
+          className="text-[11px] font-bold text-white hover:text-gray-900 transition-colors flex items-center gap-1.5 uppercase tracking-widest"
         >
           Help & Support
           <span className="text-sm font-normal ml-0.5">↗</span>
@@ -87,7 +87,7 @@ function RightPanel({ children }: PropsWithChildren) {
       {/* Outer container to force center and scroll if strictly needed on tiny height screens, but normally fits in 1 screen */}
       <div className="flex-1 flex items-center justify-center p-4 sm:p-8 z-10 h-full overflow-y-auto w-full">
         <div className="w-full max-w-[420px] mx-auto animate-in fade-in zoom-in-95 duration-500">
-          <div className="bg-white p-7 sm:p-9 rounded-[2.5rem] border border-gray-100/80 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.06)] ring-1 ring-black/2">
+          <div className="bg-white p-5 sm:p-6 rounded-[2.5rem] border border-gray-100/80 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.06)] ring-1 ring-black/2">
             {children}
           </div>
 
