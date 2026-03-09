@@ -54,7 +54,7 @@ export const getBillingEventColumns = ({
         <div className={cn(
           "h-7 w-7 rounded-lg flex items-center justify-center shrink-0 border",
           event.provider === 'stripe' ? "bg-blue-50 border-blue-100 text-blue-600" : 
-          event.provider === 'paypal' ? "bg-indigo-50 border-indigo-100 text-indigo-600" : 
+          event.provider === 'paypal' ? "bg-emerald-50 border-emerald-100 text-emerald-600" : 
           "bg-slate-50 border-slate-100 text-slate-600"
         )}>
           <Zap className="h-3.5 w-3.5" />

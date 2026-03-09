@@ -66,7 +66,7 @@ export const EventDrawer = ({ event, onClose }: EventDrawerProps) => {
           <div className="flex items-center gap-3">
             <div className={cn(
                 "h-10 w-10 rounded-xl flex items-center justify-center p-2.5 shadow-sm border",
-                event.provider === "stripe" ? "bg-blue-600 border-blue-700" : "bg-indigo-600 border-indigo-700"
+                event.provider === "stripe" ? "bg-blue-600 border-blue-700" : "bg-emerald-600 border-emerald-700"
             )}>
               <Zap className="h-full w-full text-white" />
             </div>

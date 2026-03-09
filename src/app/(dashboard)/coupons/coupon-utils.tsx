@@ -30,7 +30,7 @@ export const getCouponColumns = ({
     cell: (row: Coupon) => (
       <div className="flex flex-col">
         <span className="font-bold text-slate-900 flex items-center gap-2 uppercase tracking-wide">
-          <Tag className="h-3.5 w-3.5 text-indigo-500" />
+          <Tag className="h-3.5 w-3.5 text-emerald-500" />
           {row.code}
         </span>
         <span className="text-xs text-slate-500 font-medium">{row.name}</span>
@@ -50,7 +50,7 @@ export const getCouponColumns = ({
     header: "Discount",
     accessorKey: "discountAmount",
     cell: (row: Coupon) => (
-      <span className="font-bold text-indigo-600 tabular-nums">
+      <span className="font-bold text-emerald-600 tabular-nums">
         {row.discountType === 'percentage' ? `${row.discountAmount}%` : `$${row.discountAmount}`}
       </span>
     ),
@@ -66,7 +66,7 @@ export const getCouponColumns = ({
         </div>
         <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
           <div 
-            className="h-full bg-indigo-500 rounded-full transition-all duration-500" 
+            className="h-full bg-emerald-500 rounded-full transition-all duration-500" 
             style={{ width: `${row.usageLimit ? Math.min((row.usageCount / row.usageLimit) * 100, 100) : 5}%` }}
           />
         </div>
@@ -116,13 +116,13 @@ export const getCouponColumns = ({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48 shadow-lg border-slate-200/60 p-1.5">
-          <DropdownMenuItem onClick={() => onView(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-indigo-600">
+          <DropdownMenuItem onClick={() => onView(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-emerald-600">
             <Eye className="h-4 w-4 opacity-70" /> View Details
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onEdit(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-indigo-600">
+          <DropdownMenuItem onClick={() => onEdit(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-emerald-600">
             <Edit className="h-4 w-4 opacity-70" /> Edit Coupon
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => onToggle(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-indigo-600">
+          <DropdownMenuItem onClick={() => onToggle(row)} className="gap-2.5 py-2 cursor-pointer font-medium text-slate-600 focus:bg-slate-50 focus:text-emerald-600">
             <Power className="h-4 w-4 opacity-70" /> {row.isActive ? "Pause Coupon" : "Activate Coupon"}
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-slate-100 my-1" />

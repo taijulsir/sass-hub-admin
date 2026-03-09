@@ -25,7 +25,7 @@ import { AdminService } from "@/services/admin.service";
 import { toast } from "sonner";
 import { useState } from "react";
 
-const formSchema = z.z.object({
+const formSchema = z.object({
   code: z.string().min(3).max(20).toUpperCase(),
   name: z.string().min(3).max(50),
   discountType: z.enum(["percentage", "fixed_amount"]),
