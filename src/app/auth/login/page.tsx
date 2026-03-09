@@ -49,7 +49,7 @@ export default function LoginPage() {
       footerContent={
         <p className="text-[12px] text-gray-500 font-medium">
           Need an account?{' '}
-          <Link href={`${process.env.NEXT_PUBLIC_LANDING_PAGE_URL}/contact`} className="text-[#4F46E5] font-bold hover:underline">
+          <Link href={`${process.env.NEXT_PUBLIC_LANDING_PAGE_URL}/contact`} className="text-emerald-400 font-bold hover:underline">
             Contact Support
           </Link>
         </p>
@@ -68,7 +68,7 @@ export default function LoginPage() {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="text-[13px] font-bold text-gray-700 tracking-wide uppercase shrink-0">Password</label>
-              <Link href="/auth/forgot-password" title="Forgot password" className="text-[11px] font-bold text-indigo-600 hover:text-indigo-700 hover:underline">
+              <Link href="/auth/forgot-password" title="Forgot password" className="text-[11px] font-bold text-emerald-600 hover:text-emerald-700 hover:underline">
                 Forgot?
               </Link>
             </div>

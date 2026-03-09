@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
       success={success}
       footerContent={
         <div className="pt-1">
-          <Link href="/auth/login" className="text-xs font-bold text-gray-400 hover:text-indigo-600 transition-colors uppercase tracking-widest">
+          <Link href="/auth/login" className="text-xs font-bold text-gray-400 hover:text-emerald-600 transition-colors uppercase tracking-widest">
             Back to login
           </Link>
         </div>

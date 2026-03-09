@@ -183,7 +183,7 @@ export function TicketDrawer({ ticket, onRefresh, onClose }: TicketDrawerProps) 
 
           {loading ? (
              <div className="flex flex-col items-center justify-center py-12 gap-3">
-                <Loader2 className="h-6 w-6 text-indigo-500 animate-spin" />
+                <Loader2 className="h-6 w-6 text-emerald-500 animate-spin" />
                 <p className="text-xs font-medium text-slate-400">Loading conversation...</p>
              </div>
           ) : messages.length === 0 ? (
@@ -206,7 +206,7 @@ export function TicketDrawer({ ticket, onRefresh, onClose }: TicketDrawerProps) 
                     <div className="flex flex-col gap-1">
                       <div className={`p-3 rounded-2xl shadow-sm border ${
                         isAdmin 
-                          ? 'bg-indigo-600 text-white border-indigo-500 rounded-tr-none' 
+                          ? 'bg-emerald-600 text-white border-emerald-500 rounded-tr-none' 
                           : 'bg-white text-slate-700 border-slate-200 rounded-tl-none'
                       }`}>
                         <p className="text-xs leading-relaxed antialiased">{msg.message}</p>
@@ -231,7 +231,7 @@ export function TicketDrawer({ ticket, onRefresh, onClose }: TicketDrawerProps) 
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSendReply()}
-            className="pr-20 py-6 bg-slate-50/50 border-slate-200/60 focus-visible:ring-indigo-500 focus-visible:ring-offset-0 text-sm"
+            className="pr-20 py-6 bg-slate-50/50 border-slate-200/60 focus-visible:ring-emerald-500 focus-visible:ring-offset-0 text-sm"
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
             <Button size="icon" variant="ghost" className="h-8 w-8 text-slate-400">
@@ -239,7 +239,7 @@ export function TicketDrawer({ ticket, onRefresh, onClose }: TicketDrawerProps) 
             </Button>
             <Button 
                 size="icon" 
-                className="h-8 w-8 bg-indigo-600 hover:bg-indigo-700"
+                className="h-8 w-8 bg-emerald-600 hover:bg-emerald-700"
                 onClick={handleSendReply}
                 disabled={!replyText.trim() || sending}
             >
