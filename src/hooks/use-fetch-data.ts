@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
 
 interface FetchParams {
@@ -6,16 +6,6 @@ interface FetchParams {
   limit?: number;
   search?: string;
   [key: string]: any;
-}
-
-interface FetchResponse<T> {
-  data: T[];
-  pagination: {
-    total: number;
-    totalPages: number;
-    currentPage: number;
-    limit: number;
-  };
 }
 
 export function useFetchData<T>(
@@ -28,42 +18,45 @@ export function useFetchData<T>(
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchData = useCallback(async () => {
+  // Stable ref so we never add fetchFn to deps (avoids re-render loops)
+  const fetchFnRef = useRef(fetchFn);
+  useEffect(() => { fetchFnRef.current = fetchFn; }, [fetchFn]);
+
+  // Serialize params so the effect only re-runs when values actually change
+  const paramsKey = JSON.stringify(params);
+
+  const fetchData = useCallback(async (currentParams: FetchParams) => {
     try {
       setLoading(true);
-      const response = await fetchFn(params);
-      console.log("Fetch response:", response);
-      
-      // Standardize response access based on typical project structure
-  // Response shapes vary between endpoints. Normalize common shapes:
-  // - { data: [...] , pagination: { total, totalPages } }
-  // - { data: [...], meta: { total, page, totalPages } }
-  // - direct array in response.data
-  const results = response?.data?.data || response?.data || response || [];
+      const response = await fetchFnRef.current(currentParams);
 
-  // pagination can live under data or meta
-  const pagination = response?.data || response?.meta || { total: 0, totalPages: 1 };
+      const results = response?.data?.data || response?.data || response || [];
+      const meta = response?.data?.data
+        ? response.data
+        : (response?.data || response?.meta || {});
 
-  setData(Array.isArray(results) ? results : []);
-  setTotalItems(pagination.total ?? 0);
-  setTotalPages(pagination.totalPages ?? 1);
+      setData(Array.isArray(results) ? results : []);
+      setTotalItems(meta.total ?? 0);
+      setTotalPages(meta.totalPages ?? 1);
     } catch (error: any) {
       console.error('Fetch error:', error);
       toast.error(error.response?.data?.message || 'Failed to fetch data');
     } finally {
       setLoading(false);
     }
-  }, [fetchFn, JSON.stringify(params)]);
+  }, []); // no deps – uses ref for fetchFn, receives params as argument
 
+  // Single effect: runs when params or manual refresh key changes
   useEffect(() => {
-    fetchData();
-  }, [fetchData, ...dependencies]);
+    fetchData(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramsKey, ...dependencies]);
 
   return {
     data,
     loading,
     totalItems,
     totalPages,
-    refresh: fetchData,
+    refresh: () => fetchData(params),
   };
 }
