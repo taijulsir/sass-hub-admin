@@ -17,7 +17,7 @@ import {
   LifeBuoy,
   MessageSquare,
   Zap,
-  FileText,
+  Mail,
   UserCog,
 } from "lucide-react";
 import {
@@ -89,7 +89,7 @@ const SIDEBAR_GROUPS: SidebarGroup[] = [
       { title: "Feedback",        url: "/feedback",       icon: MessageSquare, module: "FEEDBACK" },
       { title: "Audit Logs",      url: "/audit",          icon: History,       module: "AUDIT" },
       { title: "Billing Events",  url: "/billing-events", icon: Zap,           module: "BILLING_EVENTS" },
-      { title: "System Logs",     url: "/system-logs",    icon: FileText,      module: "SYSTEM_LOGS" },
+      { title: "Email Logs",      url: "/email-logs",     icon: Mail,          module: "EMAIL_LOGS" },
     ],
   },
   {

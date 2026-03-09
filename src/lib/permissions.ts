@@ -44,8 +44,8 @@ export const PLATFORM_PERMISSIONS = {
   FEEDBACK_VIEW: 'FEEDBACK_VIEW',
   // Billing Events
   BILLING_EVENT_VIEW: 'BILLING_EVENT_VIEW',
-  // System Logs
-  SYSTEM_LOG_VIEW: 'SYSTEM_LOG_VIEW',
+  // Email Logs
+  EMAIL_LOG_VIEW: 'EMAIL_LOG_VIEW',
 } as const;
 
 export type PlatformPermissionKey = typeof PLATFORM_PERMISSIONS[keyof typeof PLATFORM_PERMISSIONS];
@@ -65,7 +65,7 @@ export const MODULE_PERMISSION_MAP: Record<string, PlatformPermissionKey> = {
   SUPPORT:        PLATFORM_PERMISSIONS.SUPPORT_VIEW,
   FEEDBACK:       PLATFORM_PERMISSIONS.FEEDBACK_VIEW,
   BILLING_EVENTS: PLATFORM_PERMISSIONS.BILLING_EVENT_VIEW,
-  SYSTEM_LOGS:    PLATFORM_PERMISSIONS.SYSTEM_LOG_VIEW,
+  EMAIL_LOGS:     PLATFORM_PERMISSIONS.EMAIL_LOG_VIEW,
   // DASHBOARD and SETTINGS have no gate — always visible to authenticated admins
 };
 
@@ -83,7 +83,7 @@ export const ADMIN_MODULES = [
   { key: 'SUPPORT',        label: 'Support Tickets' },
   { key: 'FEEDBACK',       label: 'Feedback' },
   { key: 'BILLING_EVENTS', label: 'Billing Events' },
-  { key: 'SYSTEM_LOGS',    label: 'System Logs' },
+  { key: 'EMAIL_LOGS',     label: 'Email Logs' },
   { key: 'SETTINGS',       label: 'Settings' },
 ] as const;
 

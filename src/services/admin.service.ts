@@ -409,4 +409,14 @@ export const AdminService = {
     const { data } = await api.get(`/finance/admin/billing-events/${id}`);
     return data;
   },
+
+  // --- Email Logs ---
+  getEmailLogs: async (params: any) => {
+    const { data } = await api.get('/admin/email-logs', { params });
+    return data;
+  },
+  getEmailLogDetails: async (id: string) => {
+    const { data } = await api.get(`/admin/email-logs/${id}`);
+    return data;
+  },
 }
